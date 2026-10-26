@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="950" viewBox="0 0 1600 950" role="img" aria-labelledby="title desc">
+  <title id="title">LightHead RamanNet architecture</title>
+  <desc id="desc">A Raman spectrum passes through a convolutional stem, four residual blocks, location-preserving flattening, a light classifier, and a 30-class bacterial output. A small inset explains the residual block skip connection.</desc>
+  <defs>
+    <style>
+      .title { font-family: Arial, Helvetica, sans-serif; font-size: 38px; font-weight: 700; fill: #14324a; }
+      .subtitle { font-family: Arial, Helvetica, sans-serif; font-size: 19px; fill: #536779; }
+      .box-title { font-family: Arial, Helvetica, sans-serif; font-size: 22px; font-weight: 700; fill: #14324a; }
+      .box-text { font-family: Arial, Helvetica, sans-serif; font-size: 17px; fill: #27485f; }
+      .small { font-family: Arial, Helvetica, sans-serif; font-size: 15px; fill: #536779; }
+      .callout { font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; fill: #8a5315; }
+      .output-text { font-family: Arial, Helvetica, sans-serif; font-size: 19px; font-weight: 700; fill: #ffffff; }
+      .arrow { fill: none; stroke: #718496; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+      .thin { fill: none; stroke: #718496; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+    <marker id="arrowhead" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto">
+      <path d="M 0 0 L 10 5.5 L 0 11 z" fill="#718496"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#14324a" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="950" fill="#ffffff"/>
+  <text x="800" y="65" text-anchor="middle" class="title">LightHead RamanNet</text>
+  <text x="800" y="98" text-anchor="middle" class="subtitle">Location-preserving residual 1D CNN for bacterial Raman-spectrum classification</text>
+
+  <!-- Main pipeline -->
+  <text x="95" y="170" class="box-title">Input Raman spectrum</text>
+  <text x="95" y="198" class="box-text">1,000 intensity points</text>
+  <rect x="95" y="223" width="152" height="86" rx="12" fill="#edf2f5" stroke="#9cafbc" stroke-width="2"/>
+  <polyline points="110,280 122,270 132,276 143,243 154,292 166,259 178,264 190,238 202,279 215,252 232,267" fill="none" stroke="#14324a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <path d="M255 266 H315" class="arrow" marker-end="url(#arrowhead)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="325" y="193" width="195" height="146" rx="16" fill="#d8f1ef" stroke="#159a9c" stroke-width="2.5"/>
+  </g>
+  <text x="422" y="236" text-anchor="middle" class="box-title">Feature stem</text>
+  <text x="422" y="266" text-anchor="middle" class="box-text">Conv1D · 16 filters</text>
+  <text x="422" y="293" text-anchor="middle" class="box-text">kernel = 9</text>
+  <text x="422" y="321" text-anchor="middle" class="small">1,000 positions</text>
+
+  <path d="M530 266 H575" class="arrow" marker-end="url(#arrowhead)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="585" y="193" width="178" height="146" rx="16" fill="#d8f1ef" stroke="#159a9c" stroke-width="2.5"/>
+  </g>
+  <text x="674" y="231" text-anchor="middle" class="box-title">Residual</text>
+  <text x="674" y="257" text-anchor="middle" class="box-title">block 1</text>
+  <text x="674" y="288" text-anchor="middle" class="box-text">16 filters · k = 5</text>
+  <text x="674" y="317" text-anchor="middle" class="small">1,000 positions</text>
+
+  <path d="M773 266 H810" class="arrow" marker-end="url(#arrowhead)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="820" y="193" width="178" height="146" rx="16" fill="#d8f1ef" stroke="#159a9c" stroke-width="2.5"/>
+  </g>
+  <text x="909" y="231" text-anchor="middle" class="box-title">Residual</text>
+  <text x="909" y="257" text-anchor="middle" class="box-title">block 2</text>
+  <text x="909" y="288" text-anchor="middle" class="box-text">32 filters · k = 5</text>
+  <text x="909" y="317" text-anchor="middle" class="small">max pool → 500 positions</text>
+
+  <path d="M1008 266 H1045" class="arrow" marker-end="url(#arrowhead)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="1055" y="193" width="178" height="146" rx="16" fill="#d8f1ef" stroke="#159a9c" stroke-width="2.5"/>
+  </g>
+  <text x="1144" y="231" text-anchor="middle" class="box-title">Residual</text>
+  <text x="1144" y="257" text-anchor="middle" class="box-title">block 3</text>
+  <text x="1144" y="288" text-anchor="middle" class="box-text">64 filters · k = 3</text>
+  <text x="1144" y="317" text-anchor="middle" class="small">max pool → 250 positions</text>
+
+  <path d="M1243 266 H1280" class="arrow" marker-end="url(#arrowhead)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="1290" y="193" width="178" height="146" rx="16" fill="#d8f1ef" stroke="#159a9c" stroke-width="2.5"/>
+  </g>
+  <text x="1379" y="231" text-anchor="middle" class="box-title">Residual</text>
+  <text x="1379" y="257" text-anchor="middle" class="box-title">block 4</text>
+  <text x="1379" y="288" text-anchor="middle" class="box-text">64 filters · k = 3</text>
+  <text x="1379" y="317" text-anchor="middle" class="small">250 positions</text>
+
+  <path d="M1379 350 V421 H350 V467" class="arrow" marker-end="url(#arrowhead)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="180" y="480" width="340" height="154" rx="16" fill="#fff0d3" stroke="#e8a23b" stroke-width="2.5"/>
+  </g>
+  <text x="350" y="525" text-anchor="middle" class="box-title">Location-preserving flatten</text>
+  <text x="350" y="557" text-anchor="middle" class="box-text">250 positions × 64 features</text>
+  <text x="350" y="588" text-anchor="middle" class="callout">Retains coarse peak-location information</text>
+  <text x="350" y="614" text-anchor="middle" class="small">16,000 features</text>
+
+  <path d="M530 557 H625" class="arrow" marker-end="url(#arrowhead)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="635" y="480" width="255" height="154" rx="16" fill="#e9eef8" stroke="#607bbd" stroke-width="2.5"/>
+  </g>
+  <text x="762" y="524" text-anchor="middle" class="box-title">Light classifier</text>
+  <text x="762" y="557" text-anchor="middle" class="box-text">Dense · 96 units</text>
+  <text x="762" y="586" text-anchor="middle" class="box-text">ReLU + dropout (35%)</text>
+  <text x="762" y="614" text-anchor="middle" class="small">compact head limits overfitting</text>
+
+  <path d="M900 557 H995" class="arrow" marker-end="url(#arrowhead)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="1005" y="480" width="320" height="154" rx="16" fill="#dc6b5c" stroke="#b8483d" stroke-width="2.5"/>
+  </g>
+  <text x="1165" y="528" text-anchor="middle" class="output-text">30 bacterial classes</text>
+  <text x="1165" y="562" text-anchor="middle" class="output-text" style="font-size:17px; font-weight:400">Softmax probabilities</text>
+  <text x="1165" y="598" text-anchor="middle" class="output-text" style="font-size:16px; font-weight:400">Species / strain prediction</text>
+
+  <!-- Residual block inset -->
+  <g>
+    <rect x="200" y="704" width="1190" height="175" rx="18" fill="#f5f8fa" stroke="#c7d4dc" stroke-width="2"/>
+    <text x="230" y="748" class="box-title">Residual block detail</text>
+    <text x="230" y="775" class="box-text">Each block learns spectral features while the skip connection preserves the input signal.</text>
+
+    <rect x="520" y="798" width="114" height="44" rx="9" fill="#ffffff" stroke="#9cafbc" stroke-width="2"/>
+    <text x="577" y="826" text-anchor="middle" class="box-text">Input</text>
+    <path d="M644 820 H688" class="thin" marker-end="url(#arrowhead)"/>
+    <rect x="699" y="798" width="145" height="44" rx="9" fill="#d8f1ef" stroke="#159a9c" stroke-width="2"/>
+    <text x="771" y="826" text-anchor="middle" class="box-text">Conv1D × 2</text>
+    <path d="M854 820 H899" class="thin" marker-end="url(#arrowhead)"/>
+    <circle cx="925" cy="820" r="25" fill="#ffffff" stroke="#718496" stroke-width="2.5"/>
+    <text x="925" y="828" text-anchor="middle" class="box-title" style="font-size:27px">+</text>
+    <path d="M950 820 H995" class="thin" marker-end="url(#arrowhead)"/>
+    <rect x="1005" y="798" width="120" height="44" rx="9" fill="#ffffff" stroke="#9cafbc" stroke-width="2"/>
+    <text x="1065" y="826" text-anchor="middle" class="box-text">Output</text>
+    <path d="M577 797 V782 H925 V794" class="thin" marker-end="url(#arrowhead)"/>
+    <text x="750" y="771" text-anchor="middle" class="small">skip connection</text>
+  </g>
+
+  <text x="800" y="923" text-anchor="middle" class="small">LightHead RamanNet · input shape: 1,000 × 1 · final output: 30 classes</text>
+</svg>
