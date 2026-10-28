@@ -84,6 +84,14 @@ The main bacterial dataset is not stored directly in this repository and must be
 ├── .gitignore
 ├── README.md
 ├── requirements.txt
+├── references/
+│   ├── contrastive_learning/
+│   │   ├── README.md
+│   │   ├── 1-s2.0-S0169743925000693-main.pdf
+│   │   └── 1-s2.0-S0169743925000693-supporting info.pdf
+│   └── Ramannet/
+│       ├── README.md
+│       └── ramannet.pdf
 ├── Bacteria/
 │   ├── data/                      # external bacterial dataset (download required)
 │   ├── improved_ramannet.ipynb
@@ -116,6 +124,20 @@ The main bacterial dataset is not stored directly in this repository and must be
 - The [Urine](Urine) workflow is exploratory and should be interpreted as a research prototype.
 - Some saved model files under [Bacteria/runs](Bacteria/runs) and [Bacteria/ramannet_folds](Bacteria/ramannet_folds) may be experimental or unverified; they should be used with caution.
 - Notebook outputs may contain local file paths or run-specific metadata that are not part of the repository structure itself.
+
+## Future work: contrastive learning
+
+### Benchmark objective
+
+The original RamanNet paper reported an accuracy of approximately 85% for Raman-based classification. The article PDF is stored in [references/Ramannet](references/Ramannet):
+
+Ibtehaz, N., Chowdhury, M. E. H., Khandakar, A., _et al._ (2023). RamanNet: A generalized neural network architecture for Raman spectrum analysis. _Neural Computing and Applications, 35_, 18719–18735. https://doi.org/10.1007/s00521-023-08700-z
+
+A main objective of this work is to exceed this reported benchmark on the bacterial classification task by implementing a contrastive-learning approach informed by the article below:
+
+Shi, Z., Wang, J., Su, Y., Liang, X., Zi, J., Wang, C., Bi, H., & Xiang, X. (2025). _Transfer contrastive learning for Raman spectra data of urine: Detection of glucose, protein, and prediction of kidney disorders_. **Chemometrics and Intelligent Laboratory Systems, 261**, 105384. https://doi.org/10.1016/j.chemolab.2025.105384
+
+The article PDF and the authors' supporting information are stored in [references/contrastive_learning](references/contrastive_learning).
 
 ## Review-only usage and funding acknowledgement
 
