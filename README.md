@@ -133,7 +133,7 @@ The original RamanNet paper reported an accuracy of approximately 85% for Raman-
 
 Ibtehaz, N., Chowdhury, M. E. H., Khandakar, A., _et al._ (2023). RamanNet: A generalized neural network architecture for Raman spectrum analysis. _Neural Computing and Applications, 35_, 18719–18735. https://doi.org/10.1007/s00521-023-08700-z
 
-A main objective of this work is to exceed this reported benchmark on the bacterial classification task by implementing a contrastive-learning approach informed by the article below:
+The main objective is to explore different deep-learning model architectures and exceed this reported benchmark on the bacterial classification task. Contrastive learning is one possible future approach, informed by the article below:
 
 Shi, Z., Wang, J., Su, Y., Liang, X., Zi, J., Wang, C., Bi, H., & Xiang, X. (2025). _Transfer contrastive learning for Raman spectra data of urine: Detection of glucose, protein, and prediction of kidney disorders_. **Chemometrics and Intelligent Laboratory Systems, 261**, 105384. https://doi.org/10.1016/j.chemolab.2025.105384
 
